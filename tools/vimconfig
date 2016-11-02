@@ -1,0 +1,25 @@
+syn on
+set backspace=indent,eol,start
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set foldmethod=marker
+set foldcolumn=4
+set autoindent
+set tags+=$PROJECT_DIR/tags
+colo shine
+highlight ShowMarksHLl  cterm=bold ctermfg=11 ctermbg=3
+highlight ShowMarksHLu  cterm=bold ctermfg=11 ctermbg=3
+highlight ShowMarksHLo  cterm=bold ctermfg=11 ctermbg=3
+highlight ShowMarksHLm  cterm=bold ctermfg=11 ctermbg=3
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+set mouse=a
+set guifont=Inconsolata\ 16
+colorscheme fruidle
+set path=.,$PROJECT_DIR/src
+set makeprg=$PROJECT_DIR/tools/vimbuild.sh
+set shellpipe=2>&1\\|\ $PROJECT_DIR/tools/ltee.py
+set switchbuf=useopen,usetab,newtab
+set autowrite
+filetype plugin on
+

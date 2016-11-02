@@ -1,0 +1,66 @@
+"""
+
+This entire module is just a stub representing the C++ code that
+does the things behind.
+
+"""
+
+class vertex_module_bimap_t( object ):
+    def __init__(self, ):
+        " Creates an empty vertex-module bimap"
+       
+    @staticmethod
+    def read_from_string( self, s ):
+        """ @staticmethod! 
+        
+        `s' should be an string with the clustering. 
+        
+        Reads it from a string, using one of these formats:
+        
+        vertex: modules
+        0: 2 1 
+        1: 2 3 4 4
+        2: 6 7 8
+        
+        or:
+        
+        module: vertices
+        0: 2 3 4 5
+        2: 23 32 
+        3: 03 
+        
+        Note that the way things work right now, it better if the 
+        module numbers are consecutive integers starting from zero. 
+        They don't need to have any particular order in the file
+        though. 
+        
+        """
+        return vertex_module_bimap_t()
+    
+    def add_vertex_module( self, vertex, module ):
+        """
+        Adds a discrete vertex-module pair to the mapping
+        
+        """
+        
+    def to_tuples( self ):
+        """ Returns the contents of these instance as a list 
+        [(vertex,module), (vertex,module)...] """
+        return []
+
+def get_module_counts_on_partitions(vmb1, vmb2):
+    return 5 
+
+def get_entity_count( vmb ):
+    return 0
+
+def calc_nmi_and_error( rel0, rel1, risk, epvar ):
+    """
+    Use this to check the help of the function gecmi.calc_nmi_and_error
+            
+    `cover1': 2-column array-convertible containing pairs (vertex,module), one per row 
+    `cover2': Second cover, in the same format than `cover1'
+    `risk': Risk of getting a greater error than expected
+    `error': Bound for the error 
+
+    """

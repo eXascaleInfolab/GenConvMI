@@ -1,0 +1,11 @@
+
+Import("env")
+
+if 'standalone' in env['COMPILE_TARGETS']:
+    libcluster_reader = env.SharedLibrary(
+        "cluster_reader",
+        ["cluster_reader.cpp",]
+    )
+
+    env.Install( env['TLIBPATH'] , libcluster_reader )
+    env.Install( env['GECMI_LIB_INSTALL_AT'], libcluster_reader )

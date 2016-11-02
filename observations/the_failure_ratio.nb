@@ -1,0 +1,107 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      2902,         98]
+NotebookOptionsPosition[      2433,         76]
+NotebookOutlinePosition[      2789,         92]
+CellTagsIndexPosition[      2746,         89]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+So, here is an interesting problem. Suppose n is certain number that we know. \
+That number can be split onto two complementary fractions a,b such that
+a*n+b*n = n. We don\[CloseCurlyQuote]t know properly n, but we know the \
+integer approximation of a*n: N. And we also know the proportion b*n as ex.\
+\>", "Text",
+ CellChangeTimes->{{3.520310719206176*^9, 3.520310826755375*^9}, {
+   3.520310881786416*^9, 3.5203109327128563`*^9}, {3.520310966928013*^9, 
+   3.520310996865176*^9}, 3.520311251861085*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"a", "+", "b"}], "\[Equal]", "1"}], ",", " ", 
+     RowBox[{"ex", "\[Equal]", 
+      RowBox[{"b", "*", "n"}]}], ",", 
+     RowBox[{
+      RowBox[{"a", "*", "n"}], "\[Equal]", "nbig"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "b", ",", "n"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5203109996142797`*^9, 3.520311070321886*^9}, {
+  3.520311114020298*^9, 3.520311132816409*^9}, {3.520311269067253*^9, 
+  3.52031126997069*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"a", "\[Rule]", 
+     FractionBox["nbig", 
+      RowBox[{"ex", "+", "nbig"}]]}], ",", 
+    RowBox[{"b", "\[Rule]", 
+     FractionBox["ex", 
+      RowBox[{"ex", "+", "nbig"}]]}], ",", 
+    RowBox[{"n", "\[Rule]", 
+     RowBox[{"ex", "+", "nbig"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.520311096012869*^9, 3.5203111344967813`*^9, 
+  3.5203113003159447`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"4929.75", "/", "14409"}]], "Input",
+ CellChangeTimes->{{3.520311459977697*^9, 3.520311480442266*^9}, {
+  3.5203127820901117`*^9, 3.520312805242785*^9}}],
+
+Cell[BoxData["0.34212991880074956`"], "Output",
+ CellChangeTimes->{3.520311481309474*^9, 3.520312806881995*^9}]
+}, Open  ]]
+},
+WindowSize->{1920, 1003},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->2.,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 515, 8, 90, "Text"],
+Cell[CellGroupData[{
+Cell[1097, 32, 553, 15, 58, "Input"],
+Cell[1653, 49, 437, 13, 85, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2127, 67, 176, 3, 58, "Input"],
+Cell[2306, 72, 111, 1, 58, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

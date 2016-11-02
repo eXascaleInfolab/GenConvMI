@@ -1,0 +1,87 @@
+
+from __future__ import print_function
+
+import os.path
+
+Import("env mif")
+
+# library {{{
+libgecmi = env.SharedLibrary(
+    "gecmi_so",
+    [
+        "representants.cpp",
+        "combinator.cpp",
+        "confusion.cpp",
+        "tree_processor.cpp",
+        "driver.cpp",
+        "deep_complete_simulator.cpp",
+        "player_automaton.cpp",
+        "uncertaintity_volume.cpp",
+        "calculate_till_tolerance.cpp",
+    ],
+    LIBS=[
+        "cluster_reader", 
+    ]
+)
+
+env.Install( env['TLIBPATH'] , libgecmi )
+env.Install( '#build/lib' , libgecmi )
+env.Install( env['GECMI_LIB_INSTALL_AT'], libgecmi )
+# }}}
+
+# python module {{{
+if 'python' in env['COMPILE_TARGETS']:
+    #print("In-Python")
+    py_env = env.Clone()
+    python_prefix = env['PYTHON_PREFIX']
+    print("python prefix", python_prefix )
+    python_version = env['PYTHON_VERSION']
+    python_lib_path = os.path.join(
+        python_prefix, 
+        'lib',
+     )
+    numpy_install_site = env['NUMPY_PREFIX'] 
+    numpy_includes = [
+        #os.path.join( numpy_install_site, "core/include/" ),
+        os.path.join( numpy_install_site, "numarray/include/" )
+    ]
+
+    python_include_path=os.path.join( 
+        python_prefix,  
+        'include',
+        'python' + python_version  
+    )
+    python_lib_name = 'python' + python_version
+        
+    py_env.Append(CPPFLAGS=mif( [python_include_path, numpy_includes] ))
+    pygecmi = py_env.SharedLibrary(
+         "pygecmi",
+         [
+             "python_module.cpp",
+             "python_module_p2.cpp",
+         ],
+
+         LIBS=["boost_python", python_lib_name, 'gecmi_so', "tbb", "tbbmalloc"],
+         CPPPATH=env['CPPPATH'] + [python_include_path,] + numpy_includes ,
+     )
+    py_env.InstallAs(
+        os.path.join( env['TLIBPATH'] , "python", "gecmi.so"),
+        pygecmi )
+    py_env.InstallAs( "#build/python/gecmi.so", pygecmi )
+    py_env.InstallAs( os.path.join(env['PYTHON_MODULE_INSTALL_AT'], 'gecmi.so'), pygecmi )
+# }}}
+
+# standalone {{{
+if 'standalone' in env['COMPILE_TARGETS']:
+    gecmi_standalone = env.Program(
+        "gecmi",
+        [
+            "gecmi.cpp",
+        ],
+        LIBS=["cluster_reader","boost_program_options",'gecmi_so', "tbb", "tbbmalloc", "pthread"],
+        CPPPATH=env['CPPPATH'] ,
+        LIBPATH=env['LIBPATH'] ,
+    )
+    env.Install( "#build/bin/", gecmi_standalone )
+    env.Install( env['GECMI_PROGRAM_INSTALL_AT'], gecmi_standalone )
+# }}}

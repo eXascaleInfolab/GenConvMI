@@ -1,0 +1,150 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5131,        141]
+NotebookOptionsPosition[      4338,        110]
+NotebookOutlinePosition[      5015,        135]
+CellTagsIndexPosition[      4972,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Is error ok?", "Subtitle",
+ CellChangeTimes->{{3.517307162964795*^9, 3.51730717160964*^9}}],
+
+Cell["The error can be calculated using the Binomial distribution:", "Text",
+ CellChangeTimes->{{3.5173071825891314`*^9, 3.517307208221569*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", " ", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{"CDF", "[", 
+      RowBox[{
+       RowBox[{"BinomialDistribution", "[", 
+        RowBox[{"trialCount", ",", "expectedProb"}], "]"}], ",", " ", 
+       "obtainedValue"}], "]"}], ",", "20"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"trialCount", ",", "220000"}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"obtainedValue", ",", " ", "0"}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"expectedProb", ",", "0.4"}], "}"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.517307911252075*^9, 3.5173080463525763`*^9}, 
+   3.517308256710495*^9, {3.517308308539495*^9, 3.5173084328926907`*^9}, {
+   3.517308548179359*^9, 3.51730854900698*^9}, {3.517309120845091*^9, 
+   3.517309144981903*^9}, {3.517309224933975*^9, 3.517309319855467*^9}, {
+   3.517310092744364*^9, 3.517310140426762*^9}, {3.517310207697008*^9, 
+   3.517310230802156*^9}, {3.517311765243258*^9, 3.517311781935748*^9}, {
+   3.5173118222915487`*^9, 3.517311828300169*^9}, {3.5173118814680347`*^9, 
+   3.51731192414316*^9}, {3.517545481006727*^9, 3.517545481311447*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`expectedProb$$ = 
+    0.25, $CellContext`obtainedValue$$ = 7539., $CellContext`trialCount$$ = 
+    30000, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`trialCount$$], 220000}}, {{
+       Hold[$CellContext`obtainedValue$$], 0}}, {{
+       Hold[$CellContext`expectedProb$$], 0.4}}}, Typeset`size$$ = {
+    144., {0., 13.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`expectedProb$$ = 
+        0.4, $CellContext`obtainedValue$$ = 0, $CellContext`trialCount$$ = 
+        220000}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> N[
+        CDF[
+         BinomialDistribution[$CellContext`trialCount$$, \
+$CellContext`expectedProb$$], $CellContext`obtainedValue$$], 20], 
+      "Specifications" :> {{{$CellContext`trialCount$$, 
+          220000}}, {{$CellContext`obtainedValue$$, 
+          0}}, {{$CellContext`expectedProb$$, 0.4}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{602., {114., 123.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.520312928638357*^9, 3.520333850670619*^9}]
+}, Open  ]],
+
+Cell["\<\
+Well, according to this that number our results are not likely. There is \
+something wrong in the calculations.\
+\>", "Text",
+ CellChangeTimes->{{3.517309345739897*^9, 3.517309362947398*^9}, {
+  3.517310175472473*^9, 3.5173101934312267`*^9}}]
+}, Open  ]]
+},
+WindowSize->{747, 991},
+WindowMargins->{{Automatic, 284}, {Automatic, 0}},
+Magnification->1.5,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"Utility"}, "Memo.nb", CharacterEncoding -> 
+       "UTF-8"]]], 
+   Cell[
+    StyleData["Section"]]}, Visible -> False, FrontEndVersion -> 
+  "8.0 for Linux x86 (64-bit) (February 23, 2011)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 97, 1, 79, "Subtitle"],
+Cell[679, 25, 144, 1, 45, "Text"],
+Cell[CellGroupData[{
+Cell[848, 30, 1253, 27, 157, "Input"],
+Cell[2104, 59, 1951, 40, 261, "Output"]
+}, Open  ]],
+Cell[4070, 102, 252, 5, 77, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

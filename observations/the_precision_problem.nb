@@ -1,0 +1,139 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      3782,        130]
+NotebookOptionsPosition[      2992,         97]
+NotebookOutlinePosition[      3348,        113]
+CellTagsIndexPosition[      3305,        110]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"LogGamma", "[", "2", "]"}], "-", 
+   RowBox[{"LogGamma", "[", "1000", "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.520220506923799*^9, 3.52022054819141*^9}, {
+  3.5202205860332527`*^9, 3.520220603429892*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "5905.220423209181`"}]], "Output",
+ CellChangeTimes->{{3.520220514431725*^9, 3.520220548642281*^9}, {
+  3.520220589704582*^9, 3.5202206039987164`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Suppose we have two numbers, A=am*2^ae and B=bm*2^be; let\[CloseCurlyQuote]s \
+suppose that the larger exponent be ae; if the exponents are different enough \
+their sum will keep the ae exponent and occurs uniquely on the mantisa bits \
+of the representation. Let\[CloseCurlyQuote]s suppose we have M of that many \
+bits. Then, for their sum to make any sense on the given precision, we must \
+require that Abs( ae - be )  <= M. This can be used as an important source of \
+optimization...\
+\>", "Text",
+ CellChangeTimes->{{3.520221162932351*^9, 3.520221178171845*^9}, {
+  3.520221335577381*^9, 3.520221592225906*^9}}],
+
+Cell["\<\
+This is the number of simulation steps required to fill the 53 bits on a \
+double precision number:\
+\>", "Text",
+ CellChangeTimes->{{3.520221871592367*^9, 3.520221900531348*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"2", "^", "53"}]], "Input",
+ CellChangeTimes->{{3.520221902342465*^9, 3.5202219051068172`*^9}}],
+
+Cell[BoxData["9007199254740992"], "Output",
+ CellChangeTimes->{3.520221905599059*^9}]
+}, Open  ]],
+
+Cell["\<\
+Seems like a really big number to me.\
+\>", "Text",
+ CellChangeTimes->{{3.520221918553549*^9, 3.520221926092093*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"10000", "!"}], "]"}]], "Input",
+ CellChangeTimes->{{3.5202224361072483`*^9, 3.520222442459942*^9}, 
+   3.520223811698307*^9}],
+
+Cell[BoxData["2.84625968091705451890641321211986889`15.954589770191*^35659"], \
+"Output",
+ CellChangeTimes->{3.520222442839716*^9, 3.520223812493742*^9}]
+}, Open  ]],
+
+Cell["\<\
+However, is not big enough even for a moderate number of nodes.\
+\>", "Text",
+ CellChangeTimes->{{3.520223794569229*^9, 3.520223808440691*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"2", "^", "15"}]], "Input",
+ CellChangeTimes->{{3.5202294042700663`*^9, 3.520229406605147*^9}}],
+
+Cell[BoxData["32768"], "Output",
+ CellChangeTimes->{3.520229406935121*^9}]
+}, Open  ]]
+},
+WindowSize->{1920, 1003},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->2.,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 268, 6, 58, "Input"],
+Cell[850, 30, 179, 3, 58, "Output"]
+}, Open  ]],
+Cell[1044, 36, 628, 10, 124, "Text"],
+Cell[1675, 48, 189, 4, 56, "Text"],
+Cell[CellGroupData[{
+Cell[1889, 56, 118, 2, 58, "Input"],
+Cell[2010, 60, 85, 1, 58, "Output"]
+}, Open  ]],
+Cell[2110, 64, 127, 3, 56, "Text"],
+Cell[CellGroupData[{
+Cell[2262, 71, 170, 4, 58, "Input"],
+Cell[2435, 77, 153, 2, 88, "Output"]
+}, Open  ]],
+Cell[2603, 82, 153, 3, 56, "Text"],
+Cell[CellGroupData[{
+Cell[2781, 89, 118, 2, 58, "Input"],
+Cell[2902, 93, 74, 1, 85, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

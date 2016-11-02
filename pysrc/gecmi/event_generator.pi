@@ -1,0 +1,71 @@
+
+class deep_complete_simulator( object ):
+    def __init__(self, vmb1, vmb2 ):
+        "" 
+        
+    def get_sample( self ):
+        "Returns a pair (module_in_partition_1, module_in_partition_2 ) "
+        return (m1, m2)
+    
+    def get_n_events( self, n ):
+        "Returns a list with tuples (module, module, prob, failed) "
+        import numpy as np 
+        return np.array()
+    
+    def get_n_events_parallel(self, n ):
+        """Returns a numpy array with shape n x 2 with pairs of modules. Tries
+        to use multiple processors for that.
+        """
+        import numpy as np 
+        return np.array()
+    
+    def get_and_assimilate_events_in_parallel( self, ev_count, counter_mat ):
+        """ Assimilates the events directly to the simulator.
+        """
+        pass 
+    
+    def set_seed( self, seed ):
+        """ Set a seed """
+    
+class counter_matrix_t( object ):
+    def __init__( self, rows, cols ):
+        pass 
+    
+    def assimilate_events( self, event_list ):
+        pass 
+    
+    def calculate_nmi( self ):
+        return 0.0 
+    
+    def calculate_umi( self ):
+        return 0.0
+    
+    def get_normalized_matrix( self ):
+        return np.ndarray()
+
+    def get_normalized_matrix_with_fails( self, fails ):
+        return np.ndarray()
+    
+    def get_matrix( self ):
+        return np.ndarray()
+    
+    def get_uncertaintity_estimation( self ):
+        return uncertaintity_estimation_t()
+    
+    def calculate_nmi_and_mvar( self, threshold_prob ):
+        normalized_mi = 0.0
+        max_variance = 0.0
+        return (normalized_mi, max_variance )
+    
+class uncertaintity_estimation_t( object ):
+    volume = 0.0
+    equivalent_side = 0.0
+    max_side = 0.0
+
+def get_and_assimilate_events_in_parallel( lookback, counter_mat ):
+    """
+    Equivalent to generating a few events and pushing them to the given 
+    counter matrix
+    
+    """
+    return 

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Has to be executed in this directory
+export PROJECT_DIR=`pwd`
+export GECMI_PROJECT_DIR=`pwd`
+export PATH=$GECMI_PROJECT_DIR/build/bin:$GECMI_PROJECT_DIR/deplibs/bin:$MUTINFO_TEST_DIR/usr/local/bin:$PATH
+source localpaths
+export VIMINIT='source $GECMI_PROJECT_DIR/tools/vimconfig'
+export PYTHONPATH=$GECMI_PROJECT_DIR/pysrc:$GECMI_PROJECT_DIR/build/python:$PYTHONPATH
+export RUNNING_MACHINE="alcides"
+export LD_LIBRARY_PATH=$GECMI_PROJECT_DIR/build/objects-release/lib/:$GECMI_PROJECT_DIR/libdeps/lib:$BOOST_DIR/lib:$LD_LIBRARY_PATH:
+export PYTHONUSERBASE=/home/alcides/pytcentral
+export PATH=$SCI_PYTHON_PATH/bin:$PATH
+export LD_LIBRARY_PATH=$SCI_PYTHON_PATH/lib:$LD_LIBRARY_PATH
