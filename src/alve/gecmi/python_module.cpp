@@ -24,7 +24,7 @@ using std::cout; using std::endl;
 
 extern "C" {
     #define PY_ARRAY_UNIQUE_SYMBOL _alvegecmi
-    #include <numpy/libnumarray.h>
+//    #include <numpy/libnumarray.h>
 }
 
 #include <numpy_boost.hpp>

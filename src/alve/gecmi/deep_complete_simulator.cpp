@@ -38,7 +38,7 @@ using std::endl;
     
 // What's the failure proportion before bailing out... if I get 
 // at least this many failures, an excpetion will be raised.
-#define MAX_ACCEPTABLE_FAILURES 100
+#define MAX_ACCEPTABLE_FAILURES 10 
 
 //__print p;
 

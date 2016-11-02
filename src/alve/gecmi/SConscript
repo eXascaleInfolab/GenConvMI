@@ -42,8 +42,8 @@ if 'python' in env['COMPILE_TARGETS']:
      )
     numpy_install_site = env['NUMPY_PREFIX'] 
     numpy_includes = [
-        #os.path.join( numpy_install_site, "core/include/" ),
-        os.path.join( numpy_install_site, "numarray/include/" )
+#        os.path.join( numpy_install_site, "core/include/" ),
+#        os.path.join( numpy_install_site, "numarray/include/" )
     ]
 
     python_include_path=os.path.join( 

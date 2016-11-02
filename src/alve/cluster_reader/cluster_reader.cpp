@@ -38,6 +38,9 @@ namespace alve { namespace cluster_reader {
             (* _s) >> rgx_natural_number >> (* _s ) >> as_xpr(":") >> (*_s) >> 
                 keep( * ( ( s1 = rgx_natural_number )  >> (* _s ) ) ) ;
 
+		sregex rgx_numbers_capture_dfl = 
+            (* _s) >> rgx_natural_number >> (*_s) >> 
+                keep( * ( ( s1 = rgx_natural_number )  >> (* _s ) ) ) ;
     } // namespace detail }}}
 
 // std::string get_line_skipping_comments(std::ostream& out) {{{
@@ -80,6 +83,10 @@ void read_clusters_without_remappings(
     // Check the line adjusts to one or the other style
     xpr::smatch mo;
     bool match_ok = xpr::regex_match( line, mo, rgx_header_line_is_module );
+    // Default format:
+    // Without the header and without modules ids. Each line is a module,
+    // numbers and nodes ids in the module
+    bool default_format = false;
     if (  match_ok )
     {
         line_is_module = true; 
@@ -94,16 +101,22 @@ void read_clusters_without_remappings(
             //     module: vertices
             // or
             //     vertex: modules
-            throw std::runtime_error("NoHeaderInClustersFile");
+            //throw std::runtime_error("NoHeaderInClustersFile");
+            
+            // Consider lines to be modules by default
+            line_is_module = true;
+            default_format = true;
         }
     }
 
     //
-    bool more_lines = get_line_skipping_comments( input, line );
+    bool more_lines = default_format ? true : get_line_skipping_comments( input, line );
+    size_t iline = 0;
     while ( more_lines )
     {
         // Reading code
-        match_ok = xpr::regex_match( line, mo, rgx_numbers_capture);
+        match_ok = default_format ? xpr::regex_match( line, mo, rgx_numbers_capture_dfl )
+			: xpr::regex_match( line, mo, rgx_numbers_capture );
 
         if ( not match_ok )
         {
@@ -114,12 +127,19 @@ void read_clusters_without_remappings(
         //std::cout << mo.nested_results()[0] << std::endl;
         size_t i=0;
         size_t nhead = 0;
+        //using std::cout;
+        //cout << "Reading:";
         BOOST_FOREACH (auto const& nr, mo.nested_results() )
         {
             //std::cout << nr[0] << std::endl;
             if ( i==0 )
             {
-                nhead = boost::lexical_cast< size_t >( nr[0] );
+				if(default_format) {
+					nhead = ++iline;
+					inp_interf.add_vertex_module( boost::lexical_cast< size_t >( nr[0] ), nhead );
+					//cout << " head: " << nhead;
+					//cout << ' ' << nr[0];
+				} else nhead = boost::lexical_cast< size_t >( nr[0] );
             } else
             {
                 size_t body_member = boost::lexical_cast< size_t >( nr[0] );
@@ -130,8 +150,10 @@ void read_clusters_without_remappings(
                 {
                     inp_interf.add_vertex_module( nhead, body_member );
                 }
+                //cout << ' ' << nr[0];
             }
             i++;
+            //cout << '\n';
         }
 
         more_lines = get_line_skipping_comments( input, line );

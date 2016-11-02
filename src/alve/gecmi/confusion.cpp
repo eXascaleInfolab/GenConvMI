@@ -282,15 +282,8 @@ namespace alve { namespace gecmi {
             //double pp = quantile( bn, prob ) / total_events;
 
             // To understand this formula please check "more_about_the_error.nb"
-            double t1 = int64_t(total_events) - success_count;
-            //if ( t1 == 0.0 )
-            //{
-                //std::cout << "total_events " << total_events << " success_count " 
-                     //<< success_count << std::endl;
-                //continue ;
-            //}
             double pp = 1.0 - boost::math::ibeta_inv( 
-                t1,
+                int64_t(total_events) - success_count,
                 success_count + 1,
                 prob );
 

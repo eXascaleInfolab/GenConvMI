@@ -24,7 +24,7 @@
 extern "C" {
     #define PY_ARRAY_UNIQUE_SYMBOL _alvegecmi
     #define NO_IMPORT_ARRAY 1
-    #include <numpy/libnumarray.h>
+//    #include <numpy/libnumarray.h>
 }
 
 namespace bp = boost::python;

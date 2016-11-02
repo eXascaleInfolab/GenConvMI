@@ -106,7 +106,8 @@ int main( int argc, char* argv[])
     calculated_info_t cit = calculate_till_tolerance( 
         two_rel, risk, epvar );
 
-    cout << "NMI: " << cit.nmi << endl;
+    cout << //"NMI: " <<
+		cit.nmi << endl;
 
 
     return 0;

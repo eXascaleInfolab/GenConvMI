@@ -17,7 +17,7 @@ PYTHON_VERSION ="2.7"
 # and 'include' and a 'lib' directory below this one.
 TBB_PREFIX="/home/alcides/programming/projects/sci_python/prx"
 # The executable for the c++ compiler to use. 
-COMPILER_NAME="g++-4.6"
+COMPILER_NAME="g++"
 # The place where numpy is installed. I expect the directories 
 # 'core/include' and 'numarray/include' below.
 NUMPY_PREFIX="/usr/local/lib/python2.7/dist-packages/numpy/"

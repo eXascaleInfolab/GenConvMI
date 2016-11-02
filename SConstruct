@@ -37,8 +37,8 @@ SUBPROJECT_DIRS=[
 
 # honing {{{
 cpp_flags=[]
-cxx_flags=['-std=c++0x', '-pthread' ]
-link_flags=[]
+cxx_flags=['-std=c++11', '-pthread']
+link_flags=['-Wl,-rpath,.:lib']  # '-static'
 
 def make_include_flags( paths, prefix='-I' ):
     if isinstance( paths, str ):
@@ -71,6 +71,7 @@ env = Environment(
     ENV=os.environ,
     CPPPATH=[
         '#/src',
+		'/usr/include/python2.7',
     ],
     LIBPATH=[
         tlibpath,
