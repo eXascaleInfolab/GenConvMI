@@ -1,21 +1,19 @@
 # GenConvMI
-Generalized Conventional Mutual Information (NMI for Overlapping clusters compatible with standard NMI) - updated gecmi (https://bitbucket.org/dsign/gecmi/wiki/Home)  
+
+Generalized Conventional Mutual Information (NMI for Overlapping clusters compatible with standard NMI)
+Gecmi evaluates the mutual information of graph covers considering overlaps.  
+Paper: [Comparing network covers using mutual information](https://arxiv.org/abs/1202.0425) by Alcides Viamontes Esquivel, Martin Rosval, 2012.  
 (c) Alcides Viamontes Esquivel
 
 This is a clone of the slightly outdated [gecmi repository on bitbucket](https://bitbucket.org/dsign/gecmi) with the fixed compilation under Linux Ubuntu X64 and minor I/O extensions to support stabdard formats and be easily applicable in the [PyCaBeM](https://github.com/eXascaleInfolab/PyCABeM) clustering benchmark.  
 Modified and extended by Artem Lutov <artem@exascale.info>
 
 ## Content
-- [Description](#description)
 - [Deployment](#deployment)
 	- [Dependencies](#dependencies)
 	- [Compilation](#compilation)
 - [Usage](#usage)
 	- [Standalone Program](#standalone-program)
-
-# Description
-Gecmi evaluates the mutual information of graph covers considering overlaps.  
-Paper: [Comparing network covers using mutual information](https://arxiv.org/abs/1202.0425) by Alcides Viamontes Esquivel, Martin Rosval, 2012.
 
 # Deployment
 ## Dependencies
