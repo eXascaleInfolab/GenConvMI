@@ -58,7 +58,7 @@ calculated_info_t calculate_till_tolerance(
 
         if ( raised )
         {
-            throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch (maybe your partition is not solvable?)");
+            throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch ctt (maybe your partition is not solvable?)");
         }
 
         size_t total_events = total_events_from_unmi_cm( cm );

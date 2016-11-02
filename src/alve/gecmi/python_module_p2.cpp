@@ -122,7 +122,7 @@ bp::object dcs_get_n_events_parallel(
     Py_END_ALLOW_THREADS
     if ( raised )
     {
-        throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch (maybe your partition is not solvable?)");
+        throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch py1 (maybe your partition is not solvable?)");
     }
 
     bp::list result;
@@ -158,7 +158,7 @@ void get_and_assimilate_events_in_parallel(
     Py_END_ALLOW_THREADS
     if ( raised )
     {
-        throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch (maybe your partition is not solvable?)");
+        throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch py2 (maybe your partition is not solvable?)");
     }
 }// }}}
 

@@ -38,7 +38,7 @@ using std::endl;
     
 // What's the failure proportion before bailing out... if I get 
 // at least this many failures, an excpetion will be raised.
-#define MAX_ACCEPTABLE_FAILURES 10 
+#define MAX_ACCEPTABLE_FAILURES 10
 
 //__print p;
 
@@ -119,7 +119,7 @@ struct deep_complete_simulator::pimpl_t {
             attempt_count ++;
             if ( attempt_count >= MAX_ACCEPTABLE_FAILURES )
             {
-                throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch (maybe your paritition is not solvable?)");
+                throw std::runtime_error("SystemIsSuspiciuslyFailingTooMuch dcs (maybe your paritition is not solvable?)");
             }
         }
         simulation_result_t result( 

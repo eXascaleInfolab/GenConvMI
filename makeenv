@@ -19,3 +19,5 @@ export LD_LIBRARY_PATH=$GECMI_PROJECT_DIR/build/objects-release/lib/:$GECMI_PROJ
 export PYTHONUSERBASE=/home/alcides/pytcentral
 export PATH=$SCI_PYTHON_PATH/bin:$PATH
 export LD_LIBRARY_PATH=$SCI_PYTHON_PATH/lib:$LD_LIBRARY_PATH
+
+#export COMPILE_MODE='debug'
