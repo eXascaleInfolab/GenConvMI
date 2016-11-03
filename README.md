@@ -2,7 +2,7 @@
 
 Generalized Conventional Mutual Information (NMI for Overlapping clusters compatible with standard NMI)
 Gecmi evaluates the mutual information of graph covers considering overlaps.  
-Paper: [Comparing network covers using mutual information](https://arxiv.org/abs/1202.0425) by Alcides Viamontes Esquivel, Martin Rosval, 2012.  
+The paper: [Comparing network covers using mutual information](https://arxiv.org/abs/1202.0425) by Alcides Viamontes Esquivel, Martin Rosval, 2012.  
 (c) Alcides Viamontes Esquivel
 
 This is a clone of the slightly outdated [gecmi repository on bitbucket](https://bitbucket.org/dsign/gecmi) with the fixed compilation under Linux Ubuntu 16.04 x64 and minor I/O extensions to support stabdard formats and be easily applicable in the [PyCaBeM](https://github.com/eXascaleInfolab/PyCABeM) clustering benchmark.  
@@ -11,6 +11,7 @@ Modified and extended by Artem Lutov <artem@exascale.info>
 *The refined, optimized and extended, pure C++ version with the fully automatic cross-platform build producing a single executable is available in the [GenConvNMI](https://github.com/eXascaleInfolab/GenConvNMI) repository.*
 
 ## Content
+
 - [Deployment](#deployment)
 	- [Dependencies](#dependencies)
 	- [Compilation](#compilation)
@@ -27,7 +28,7 @@ should be additionally installed as outlined below.
 
 ## Dependencies
 
-For the *compilation*: 
+For the *compilation*:
 - [boost](http://www.boost.org/boost) >= v.1.47
 - [itbb](http://threadingbuildingblocks.org/itbb) >= v.3.0
 - [scons](http://www.scons.org/scons) >= v.2.0
@@ -37,6 +38,7 @@ You will additionally need g++ >= v.4.6
 For the *brebuilt executables*:
 - libtbb2:  `$ sudo apt-get install libtbb2`
 - libboost_program_options v1.58:  `$ sudo apt-get install libboost-program-options1.58.0`
+- libstdc++6:  `$ sudo apt-get install libstdc++6`
 
 For using the Python module, you will need development headers of python,
 boost::python (including in boost, which is required anyway) and *numpy*.
@@ -90,7 +92,7 @@ Python as `import gecmi` using `gecmi.so` module.
 
 ## Executable
 
-The standalone program uses files in a simple format. For example:
+The standalone program uses files in CNL format:
 
 ```
 # The comments start with '#' like this line
@@ -100,6 +102,7 @@ The standalone program uses files in a simple format. For example:
 2
 ```
 where each line corresponds to the network nodes forming the cluster (community, module).
+> To run the executable, it's local dependencies should be located in the same directory or int the 'lib/' subdirectory.
 
 The original `gecmi` format is also supported:
 
@@ -121,7 +124,7 @@ module: vertices
 2: 2
 ```
 
-Note that the first line is compulsory: it indicates what is before and after the colon.
+*The format is automatically identified by the file header (or it's absence).*
 
 To get the normalized mutual information of the covers in the two files, issue the
 command:
