@@ -1,6 +1,7 @@
 
 #include "confusion.hpp"
 
+#include <limits>
 #include <iostream>
 
 #include <boost/numeric/ublas/io.hpp>
@@ -15,13 +16,13 @@ using std::cout;
 using std::endl;
 
 
-namespace alve { namespace gecmi { 
+namespace alve { namespace gecmi {
 
     // void normalize_events( cm, out_double_mat, out_cols, out_rows ) {{{
-    //    Here `normalized' means just "divided by the total so that sum 
-    //    of frequencies/probabilities be one". It doesn't have anything to 
+    //    Here `normalized' means just "divided by the total so that sum
+    //    of frequencies/probabilities be one". It doesn't have anything to
     //    do with entropies.
-    void normalize_events( counter_matrix_t const& cm, 
+    void normalize_events( counter_matrix_t const& cm,
         importance_matrix_t& out_norm_conf,
         importance_vector_t& out_norm_cols,
         importance_vector_t& out_norm_rows
@@ -65,9 +66,9 @@ namespace alve { namespace gecmi {
     } // }}}
 
     // void normalize_events_with_fails( int_mat, out_double_mat ) {{{
-    //    The purpose of this function is just to assist on debugging, it is 
+    //    The purpose of this function is just to assist on debugging, it is
     //    not using for computing the results
-    void normalize_events_with_fails( counter_matrix_t const& cm, 
+    void normalize_events_with_fails( counter_matrix_t const& cm,
         importance_float_t const& fail_count,
         importance_matrix_t& out_norm_conf
         )
@@ -98,11 +99,11 @@ namespace alve { namespace gecmi {
     } // }}}
 
     // importance_float_t zlog( importance_float_t x ) {{{
-    importance_float_t zlog( importance_float_t x ) 
+    importance_float_t zlog( importance_float_t x )
     {
-        if ( x == 0.0)
+        if ( x <= 0 )
         {
-            return 0.0;
+            return std::numeric_limits<importance_float_t>::lowest();
         } else
         {
             return log( x ) / log( 2 );
@@ -110,10 +111,10 @@ namespace alve { namespace gecmi {
     } // }}}
 
     // importance_float_t unnormalized_mi( norm_conf, norm_cols, norm_rows ) {{{
-    //    Input matrix and columns are normalized with respect to probabilities, 
-    //    so that all sum one; not divided by semi-sum of entropies or anything 
+    //    Input matrix and columns are normalized with respect to probabilities,
+    //    so that all sum one; not divided by semi-sum of entropies or anything
     //    like that.
-    importance_float_t unnormalized_mi( 
+    importance_float_t unnormalized_mi(
         importance_matrix_t const& norm_conf,
         importance_vector_t const& norm_cols,
         importance_vector_t const& norm_rows
@@ -130,7 +131,7 @@ namespace alve { namespace gecmi {
             // g = i*n+j
             size_t j = g % col_count;
             size_t i = g / col_count;
-            ni += p*zlog( 
+            ni += p*zlog(
                 p / (
                     norm_cols(j) * norm_rows(i)
                 )
@@ -140,10 +141,10 @@ namespace alve { namespace gecmi {
     } // }}}
 
     // importance_float_t normalized_mi( norm_conf, norm_cols, norm_rows ) {{{
-    //    Input matrix and columns are normalized with respect to probabilities, 
-    //    so that all sum one; not divided by semi-sum of entropies or anything 
+    //    Input matrix and columns are normalized with respect to probabilities,
+    //    so that all sum one; not divided by semi-sum of entropies or anything
     //    like that. But we do divide for returning the result in this function.
-    importance_float_t normalized_mi( 
+    importance_float_t normalized_mi(
         importance_matrix_t const& norm_conf,
         importance_vector_t const& norm_cols,
         importance_vector_t const& norm_rows
@@ -160,11 +161,11 @@ namespace alve { namespace gecmi {
             // g = i*n+j
             size_t j = g % col_count;
             size_t i = g / col_count;
-            // Rows are indexed using i, so, norm_rows are the 
+            // Rows are indexed using i, so, norm_rows are the
             // marginal probabilities of all the rows, and we can visualize
             // it as a column vector. Similarly, we can visualize norm_cols as
-            // a row vector (although it is the sum, column-wize, of all 
-            ni += p*zlog( 
+            // a row vector (although it is the sum, column-wize, of all
+            ni += p*zlog(
                 p / (
                     norm_cols(j) * norm_rows(i)
                 )
@@ -192,7 +193,7 @@ namespace alve { namespace gecmi {
     } // }}}
 
     // void variances_at_prob( nconf, ncols, nrows, n, threshold_prob, &out_max_variance, &out_nmi ) {{{
-    void variances_at_prob( 
+    void variances_at_prob(
         importance_matrix_t const& norm_conf,
         importance_vector_t const& norm_cols,
         importance_vector_t const& norm_rows,
@@ -208,8 +209,8 @@ namespace alve { namespace gecmi {
         // Start with zero
         out_max_variance = 0;
 
-        // Now I need to go as if yo calculate the mutual information completely. 
-        // But then I also need to keep intermediate magnitudes so that 
+        // Now I need to go as if yo calculate the mutual information completely.
+        // But then I also need to keep intermediate magnitudes so that
         // I can go back and forth easily.
 
         // First the unnormalized mutual information... shouldnt
@@ -221,18 +222,18 @@ namespace alve { namespace gecmi {
         BOOST_FOREACH( auto int2p, norm_conf.data() )
         {
             importance_float_t p = int2p.second ;
-            
+
             //check_total_one += p;
 
             size_t g = int2p.first;
             // g = i*n+j
             size_t j = g % col_count;
             size_t i = g / col_count;
-            // Rows are indexed using i, so, norm_rows are the 
+            // Rows are indexed using i, so, norm_rows are the
             // marginal probabilities of all the rows, and we can visualize
             // it as a column vector. Similarly, we can visualize norm_cols as
-            // a row vector (although it is the sum, column-wize, of all 
-            ni += p*zlog( 
+            // a row vector (although it is the sum, column-wize, of all
+            ni += p*zlog(
                 p / (
                     norm_cols(j) * norm_rows(i)
                 )
@@ -263,7 +264,7 @@ namespace alve { namespace gecmi {
         importance_float_t nmi = unmi / std::max( H0 , H1 );
 
         // Let's populate a vector with all the increments of the
-        // y according to the variation of the x.... of course this 
+        // y according to the variation of the x.... of course this
         // vector will be big.
         size_t alpha_size = norm_conf.size1() * norm_conf.size2();
 
@@ -278,59 +279,59 @@ namespace alve { namespace gecmi {
 
             //binomial bn( total_events, p );
             //  This is  the lower point where with probability
-            // `prob' we can go. 
+            // `prob' we can go.
             //double pp = quantile( bn, prob ) / total_events;
 
             // To understand this formula please check "more_about_the_error.nb"
-            double pp = 1.0 - boost::math::ibeta_inv( 
+            double pp = 1.0 - boost::math::ibeta_inv(
                 int64_t(total_events) - success_count,
                 success_count + 1,
                 prob );
 
             //std::cout <<
-                //boost::format( "total_events %1% success_count %2% prob %3%" ) 
-                    //% total_events 
-                    //% success_count 
+                //boost::format( "total_events %1% success_count %2% prob %3%" )
+                    //% total_events
+                    //% success_count
                     //% prob
                 //<< std::endl;
 
             //double pp = quantile( bn, 0.50 ) / total_events;  // <--- For verification
             //std::cout << "p : " << p << " pp: " << pp << std::endl;
-            
+
             // 'g' is the general index inside the data array of the matrix.
             size_t g = int2p.first;
             // g = i*col_count + j  <-- That's how it is related to rows and cols
             size_t j = g % col_count;
             size_t i = g / col_count;
-            // Now I need to calculate what would be if 
+            // Now I need to calculate what would be if
             // we use the quantile...
             importance_float_t h0used = norm_cols( j );
             importance_float_t h1used = norm_rows( i );
             // Anulate old value used there... note inversion
             // of signs
             importance_float_t h0 = H0 + h0used * zlog( h0used );
-            // New value to use 
+            // New value to use
             importance_float_t h0new = h0used - p + pp ;
             // Put it in place... note inversion of signs
             h0 -= h0new * zlog( h0new );
             //cout << "H0 " << H0 << " h0 " << h0 << endl;
-            
+
             // Anulate old value used there... note inversion
             // of signs
             importance_float_t h1 = H1 + h1used * zlog( h1used );
-            // New value to use 
+            // New value to use
             importance_float_t h1new = h1used - p + pp ;
             // Put it in place... note inversion of signs
             h1 -= h1new * zlog( h1new );
             //cout << "H1 " << H1 << " h1 " << h1 << endl;
 
-            // Rows are indexed using i, so, norm_rows are the 
+            // Rows are indexed using i, so, norm_rows are the
             // marginal probabilities of all the rows, and we can visualize
             // it as a column vector. Similarly, we can visualize norm_cols as
-            // a row vector. 
-            
+            // a row vector.
+
             // Suppressing old effect
-            importance_float_t old_summand = p*zlog( 
+            importance_float_t old_summand = p*zlog(
                 p / (
                     norm_cols(j) * norm_rows(i)
                 ));
@@ -355,8 +356,8 @@ namespace alve { namespace gecmi {
         out_nmi = nmi;
     } // }}}
 
-    size_t total_events_from_unmi_cm( 
-        counter_matrix_t const& cm 
+    size_t total_events_from_unmi_cm(
+        counter_matrix_t const& cm
     )
     {
         size_t total_events = 0.0;
@@ -369,4 +370,3 @@ namespace alve { namespace gecmi {
     }
 
 }} // namespace alve::gecmi
-
