@@ -21,14 +21,22 @@ Modified and extended by Artem Lutov <artem@exascale.info>
 - [Related Projects](#related-projects)
 
 # Deployment
+
+The prebuilt binaries for *Ubuntu 16.04 x64* can be downloaded in the [releases section](https://github.com/eXascaleInfolab/GenConvMI/releases), the dependencies
+should be additionally installed as outlined below.
+
 ## Dependencies
 
-* [boost](http://www.boost.org/boost) >= v.1.47
-* [itbb](http://threadingbuildingblocks.org/itbb) >= v.3.0
-* [scons](http://www.scons.org/scons) >= v.2.0
+For the *compilation*: 
+- [boost](http://www.boost.org/boost) >= v.1.47
+- [itbb](http://threadingbuildingblocks.org/itbb) >= v.3.0
+- [scons](http://www.scons.org/scons) >= v.2.0
 You will additionally need g++ >= v.4.6
-
 > Any lower version will also probably work after some tuning.
+
+For the *brebuilt executables*:
+- libtbb2:  `$ sudo apt-get install libtbb2`
+- libboost_program_options v1.58:  `$ sudo apt-get install libboost-program-options1.58.0`
 
 For using the Python module, you will need development headers of python,
 boost::python (including in boost, which is required anyway) and *numpy*.
