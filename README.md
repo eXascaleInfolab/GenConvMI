@@ -8,7 +8,7 @@ The paper: [Comparing network covers using mutual information](https://arxiv.org
 This is a clone of the slightly outdated [gecmi repository on bitbucket](https://bitbucket.org/dsign/gecmi) with the fixed compilation under Linux Ubuntu 16.04 x64 and minor I/O extensions to support stabdard formats and be easily applicable in the [PyCaBeM](https://github.com/eXascaleInfolab/PyCABeM) clustering benchmark.  
 Modified and extended by Artem Lutov <artem@exascale.info>
 
-*The refined, optimized and extended, pure C++ version with the fully automatic cross-platform build producing a single executable is available in the [GenConvNMI](https://github.com/eXascaleInfolab/GenConvNMI) repository.*
+*The refined, optimized and extended, pure C++ version that works 2 ORDERS faster and more accurate on large networks, provides fully automatic cross-platform build producing a single executable is available in the [GenConvNMI](https://github.com/eXascaleInfolab/GenConvNMI) repository.*
 
 ## Content
 
@@ -143,5 +143,7 @@ The python module allows to use this tool in programs more easily. Check an [exa
 of how it is used.
 
 # Related Projects
-- [GenConvNMI](https://github.com/eXascaleInfolab/GenConvNMI) - The refined, optimized and extended, pure C++ version of GenConvMI with the fully automatic cross-platform build that produces a single executable.
+- [GenConvNMI](https://github.com/eXascaleInfolab/GenConvNMI) - Significantly reimplemented current gecmi with much better performance (2 orders faster, consumes 2x less RAM memory and provides more accurate results), pure C++ version with the fully automatic cross-platform build that produces a single executable (without the annoying need to copy 2 lib-dependencies of the current GenConvNMI).
+- [OvpNMI](https://github.com/eXascaleInfolab/OvpNMI) - Another method of the NMI evaluation for the overlapping clusters (communities) that is not compatible with the standard NMI value unlike GenConvNMI, but it is much faster and yields exact results unlike probabilistic results with some variance in GenConvNMI.
+- [ExecTime](https://bitbucket.org/lumais/exectime/)  - A lightweight resource consumption profiler.
 - [PyCABeM](https://github.com/eXascaleInfolab/PyCABeM) - Python Benchmarking Framework for the Clustering Algorithms Evaluation. Uses extrinsic (NMIs) and intrinsic (Q) measures for the clusters quality evaluation considering overlaps (nodes membership by multiple clusters).
